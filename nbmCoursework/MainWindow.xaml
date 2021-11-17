@@ -6,7 +6,12 @@
         xmlns:local="clr-namespace:nbmCoursework"
         mc:Ignorable="d"
         Title="Napier Banking Message Filtering Service" Height="450" Width="800">
-    <Grid>
-    
+  <Grid RenderTransformOrigin="0.439,0.716">
+    <TextBox x:Name="MessageHeaderTextBox" HorizontalAlignment="Left" Height="23" Margin="194,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
+    <Label x:Name="MessageHeaderLabel" Content="Message Header" HorizontalAlignment="Left" Margin="74,49,0,0" VerticalAlignment="Top" Height="42"/>
+    <TextBox x:Name="MessageBodyTextBox" HorizontalAlignment="Left" Height="122" Margin="194,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226"/>
+    <Label x:Name="MessageBodyLabel" Content="Message Body" HorizontalAlignment="Left" Margin="74,121,0,0" VerticalAlignment="Top" Height="42"/>
+    <Button x:Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Margin="194,263,0,0" VerticalAlignment="Top" Width="75"/>
+
   </Grid>
 </Window>

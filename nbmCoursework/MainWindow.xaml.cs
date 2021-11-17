@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using nbmCoursework.Messages;
 
 namespace nbmCoursework
 {
@@ -24,7 +25,12 @@ namespace nbmCoursework
         {
             InitializeComponent();
 
-            // test comment
+        }
+
+        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Message newMessage = new Message(MessageHeaderTextBox.Text, MessageHeaderTextBox.Text[0], MessageBodyTextBox.Text);
+            return;
         }
     }
 }

@@ -69,6 +69,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Messages\Email.cs" />
+    <Compile Include="Messages\Message.cs" />
+    <Compile Include="Messages\SMS.cs" />
+    <Compile Include="Messages\Tweet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

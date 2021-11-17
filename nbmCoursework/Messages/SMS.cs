@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace nbmCoursework.Messages
 {
-    class SMS
+    class SMS : Message
     {
         public string telephoneNumber;
+
+        public SMS(string aId, char aMessageType, string aMessageText, string aTelephoneNumber) : base(aId, aMessageType, aMessageText)
+        {
+            telephoneNumber = aTelephoneNumber;
+        }
     }
 }

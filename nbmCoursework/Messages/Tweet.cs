@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace nbmCoursework.Messages
 {
-    class Tweet
+    class Tweet : Message
     {
         public string twitterId;
+
+        public Tweet(string aId, char aMessageType, string aMessageText, string aTwitterId) : base(aId, aMessageType, aMessageText)
+        {
+            twitterId = aTwitterId;
+        }
     }
 }

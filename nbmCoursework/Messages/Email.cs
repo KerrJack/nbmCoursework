@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 
 namespace nbmCoursework.Messages
 {
-    class Email
+    class Email : Message
     {
         public string emailAddress;
         public string subject;
+
+        public Email(string aId, char aMessageType, string aMessageText, string aEmailAddress, string aSubject) : base(aId, aMessageType, aMessageText)
+        {
+            emailAddress = aEmailAddress;
+            subject = aSubject;
+        }
     }
+
 }

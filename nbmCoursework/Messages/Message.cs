@@ -12,9 +12,11 @@ namespace nbmCoursework.Messages
         public char messageType;
         public string messageText;
 
-        public void setID ()
+        public Message(string aId, char aMessageType, string aMessageText)
         {
-            
+            id = aId;
+            messageType = aMessageType;
+            messageText = aMessageText;
         }
     }
 }

@@ -24,6 +24,7 @@ namespace nbmCoursework
         {
             InitializeComponent();
 
+            // test comment
         }
     }
 }

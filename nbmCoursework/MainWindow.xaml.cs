@@ -23,18 +23,37 @@ namespace nbmCoursework
     /// </summary>
     public partial class MainWindow : Window
     {
+        private NBMManager nbmManager;
         public MainWindow()
         {
             InitializeComponent();
 
+            nbmManager = new NBMManager();
+
+        }
+
+        private void NewMessageButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageHeaderTextBox.Text = String.Empty;
+            MessageBodyTextBox.Text = String.Empty;
         }
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
+
+            Boolean validated = true;
+
             // if statment used to check that the message header is not left blank before submitting
             if (string.IsNullOrEmpty(MessageHeaderTextBox.Text))
             {
                 MessageBox.Show("Message Header cannot be left blank. please enter a message header.");
+                validated = false;
+            }
+
+            if (string.IsNullOrEmpty(MessageBodyTextBox.Text))
+            {
+                MessageBox.Show("Message Body cannot be left blank. please enter a message body.");
+                validated = false;
             }
 
             // initialising the id string to count how many characters have been inputted
@@ -51,58 +70,27 @@ namespace nbmCoursework
             if (count != 10)
             {
                 MessageBox.Show("Message Header is only 10 characters long. please enter a valid message header");
+                validated = false;
             }
 
-            // if the message header begins with the letter E then a new email object will be created
-            if (MessageHeaderTextBox.Text.StartsWith("E"))
+
+
+            if (validated)
             {
-                string[] lines = Regex.Split(MessageBodyTextBox.Text, "\r\n");
-                Email newEmail = new Email(MessageHeaderTextBox.Text, MessageHeaderTextBox.Text[0], lines[2], lines[0], lines[1]);
+                string processMessageResult = nbmManager.processMessage(MessageHeaderTextBox.Text, MessageBodyTextBox.Text);
 
-                return;
-            }
-
-            // if the message header begins with the letter S then a new SMS object will be created
-            else if (MessageHeaderTextBox.Text.StartsWith("S"))
-            {
-                string[] lines = Regex.Split(MessageBodyTextBox.Text, "\r\n");
-
-                SMS newSMS = new SMS(MessageHeaderTextBox.Text, MessageHeaderTextBox.Text[0], lines[1], lines[0]);
-
-
-                string smsMessage = lines[1];
-
-                int smsCharacterCount = 0;
-
-                for (int i = 0; i < smsMessage.Length; i++)
+                if (processMessageResult != "SUCCESS")
                 {
-                    count++;
+                    MessageBox.Show(processMessageResult);
                 }
-
-                if (smsCharacterCount > 140)
+                else
                 {
-                    MessageBox.Show("Message can only be 140 characters long");
+                    MessageHeaderTextBox.Text = String.Empty;
+                    MessageBodyTextBox.Text = String.Empty;
+                    MessageBox.Show("Submitted");
                 }
-
-                return;
             }
-
-            // if the message header begins with the letter T then a new Tweet object will be created
-            else if (MessageHeaderTextBox.Text.StartsWith("T"))
-            {
-                string[] lines = Regex.Split(MessageBodyTextBox.Text, "\r\n");
-
-                Tweet newTweet = new Tweet(MessageHeaderTextBox.Text, MessageHeaderTextBox.Text[0], lines[1], lines[0]);
-
-                return;
-            }
-
-            else
-            {
-                MessageBox.Show("Header must begin with S, E or T");
-            }
-
-
+            
         }
     }
 }

@@ -41,7 +41,7 @@ namespace nbmCoursework
             {
                 if (abbreviations.ContainsKey(word))
                 {
-                    newSentence += word + "<" + abbreviations[word] + "> ";
+                    newSentence += word + " <" + abbreviations[word] + "> ";
                 }
                 else
                 {

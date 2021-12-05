@@ -42,6 +42,20 @@ namespace nbmCoursework.Checkers
 
             return newSentence;
         }
+
+        public void displayHashTagList()
+        {
+            foreach (string hashtag in hashtagList)
+            {
+                Console.WriteLine(hashtag);
+            }
+        }
+
+        public LinkedList<string> getHashtagList()
+        {
+            return hashtagList;
+        }
+
     }
 
 }

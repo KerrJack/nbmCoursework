@@ -11,11 +11,14 @@ namespace nbmCoursework.Messages
     {
         TextAbbreviationChecker textAbbreviationChecker;
         QuarantineChecker quarantineChecker;
+        nbmCoursework.Checkers.HashtagAndMentionChecker hashtagAndMentionChecker;
+
 
         public NBMManager()
         {
             quarantineChecker = new QuarantineChecker();
             textAbbreviationChecker = new TextAbbreviationChecker();
+            hashtagAndMentionChecker = new Checkers.HashtagAndMentionChecker();
             textAbbreviationChecker.readFromFile();
         }
 
@@ -61,6 +64,11 @@ namespace nbmCoursework.Messages
 
                 string emailMessage = lines[2];
 
+                string subject = lines[1];
+
+                string[] word = subject.Split(' ');
+                //DateTime dDate;
+
                 int emailCharacterCount = 0;
 
                 for (int i = 0; i < emailMessage.Length; i++)
@@ -73,11 +81,31 @@ namespace nbmCoursework.Messages
                     return "Message can only be 1028 characters long";
                 }
 
-                string emailMessageQuarantined = quarantineChecker.checkForURLs(emailMessage);
+                if (subject.StartsWith("SIR"))
+                {
+                    if(word[1].StartsWith("0"))
+                    {
+                        return "You must enter the date in the formate dd/mm/yyyy";
+                    }
+                    else
+                    {
+                        SIR newSIR = new SIR(lines[2], lines[3], header, header[0], lines[4], lines[0], lines[1]);
 
-                Email newEmail = new Email(header, header[0], emailMessageQuarantined, lines[0], lines[1]);
+                        return "SUCCESS";
 
-                return "SUCCESS";
+                    }
+                    
+                }
+                else {
+                    string emailMessageQuarantined = quarantineChecker.checkForURLs(emailMessage);
+
+                    Email newEmail = new Email(header, header[0], emailMessageQuarantined, lines[0], lines[1]);
+
+                    return "SUCCESS";
+                }
+                
+
+
                 
             }
             else if (header.StartsWith("T"))
@@ -98,12 +126,24 @@ namespace nbmCoursework.Messages
                     return "Message can only be 140 characters long";
                 }
 
-                Tweet newTweet = new Tweet(header, header[0], lines[1], lines[0]);
+                string messageTextWithAbbreviations = textAbbreviationChecker.checkForAbbreviations(tweetMessage);
+                hashtagAndMentionChecker.checkForHashtags(tweetMessage);
+
+                Tweet newTweet = new Tweet(header, header[0], messageTextWithAbbreviations, lines[0]);
 
                 return "SUCCESS";
             }
             else return "Header must begin with S, E or T";
         }
 
+        public void displayHashTagList()
+        {
+            hashtagAndMentionChecker.displayHashTagList();
+        }
+
+        public LinkedList<string> getHashtagList()
+        {
+            return hashtagAndMentionChecker.getHashtagList();
+        }
     }
 }

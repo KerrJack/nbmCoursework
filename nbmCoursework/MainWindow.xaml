@@ -13,6 +13,8 @@
     <Label x:Name="MessageBodyLabel" Content="Message Body" HorizontalAlignment="Left" Margin="74,121,0,0" VerticalAlignment="Top" Height="42"/>
     <Button x:Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Margin="274,265,0,0" VerticalAlignment="Top" Width="75" Click="SubmitButton_Click"/>
         <Button x:Name="NewMessageButton" Content="New" HorizontalAlignment="Left" Margin="194,265,0,0" VerticalAlignment="Top" Width="75" Click="SubmitButton_Click"/>
+        <Button x:Name="hashtagListButton" Content="Hashtag List" HorizontalAlignment="Left" Margin="600,49,0,0" VerticalAlignment="Top" Width="75" Click="hashtagListButton_Click"/>
+        <TextBox x:Name="hashtagReportBox" HorizontalAlignment="Left" Height="175" Margin="600,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

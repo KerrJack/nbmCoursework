@@ -89,5 +89,16 @@ namespace nbmCoursework
             }
             
         }
+
+        private void hashtagListButton_Click(object sender, RoutedEventArgs e)
+        {
+            nbmManager.displayHashTagList();
+
+            foreach (string hashtag in nbmManager.getHashtagList())
+            {
+                hashtagReportBox.AppendText(hashtag);
+            }
+            
+        }
     }
 }

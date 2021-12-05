@@ -58,6 +58,7 @@
     </ApplicationDefinition>
     <Compile Include="Checkers\HashtagAndMentionChecker.cs" />
     <Compile Include="Checkers\QuarantineChecker.cs" />
+    <Compile Include="Messages\SIR.cs" />
     <Compile Include="Text Abbreviations\TextAbbreviationChecker.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

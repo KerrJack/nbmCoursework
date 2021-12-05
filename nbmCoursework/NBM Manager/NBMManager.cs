@@ -9,6 +9,15 @@ namespace nbmCoursework.Messages
 {
     class NBMManager
     {
+        TextAbbreviationChecker textAbbreviationChecker;
+        QuarantineChecker quarantineChecker;
+
+        public NBMManager()
+        {
+            quarantineChecker = new QuarantineChecker();
+            textAbbreviationChecker = new TextAbbreviationChecker();
+            textAbbreviationChecker.readFromFile();
+        }
 
         public string processMessage(string header, string body)
         {
@@ -20,7 +29,9 @@ namespace nbmCoursework.Messages
                 string[] lines = Regex.Split(body, "\r\n");
 
                 // setting up count for loop to count through the sms message by character
+                string telephoneNumber = lines[0];
                 string smsMessage = lines[1];
+
 
                 int smsCharacterCount = 0;
 
@@ -29,7 +40,6 @@ namespace nbmCoursework.Messages
                     smsCharacterCount++;
                 }
 
-
                 // if loop used to count the max characters for a sms message body
                 // if the message is greater than 140 characters long then message box will appear to the user
                 if (smsCharacterCount > 140)
@@ -37,7 +47,9 @@ namespace nbmCoursework.Messages
                     return "Message can only be 140 characters long";
                 }
 
-                SMS newSMS = new SMS(header, header[0], lines[1], lines[0]);
+                string messageTextWithAbbreviations = textAbbreviationChecker.checkForAbbreviations(smsMessage);
+
+                SMS newSMS = new SMS(header, header[0], messageTextWithAbbreviations, telephoneNumber);
 
                 return "SUCCESS";
             }
@@ -45,18 +57,46 @@ namespace nbmCoursework.Messages
             {
                 // if the message header begins with the letter E then a new email object will be created
                 
-                    string[] lines = Regex.Split(body, "\r\n");
+                string[] lines = Regex.Split(body, "\r\n");
 
-                    string emailMessage = lines[1];
+                string emailMessage = lines[2];
 
-                    Email newEmail = new Email(header, header[0], lines[2], lines[0], lines[1]);
+                int emailCharacterCount = 0;
 
-                    return "SUCCESS";
+                for (int i = 0; i < emailMessage.Length; i++)
+                {
+                    emailCharacterCount++;
+                }
+
+                if (emailCharacterCount > 1028)
+                {
+                    return "Message can only be 1028 characters long";
+                }
+
+                string emailMessageQuarantined = quarantineChecker.checkForURLs(emailMessage);
+
+                Email newEmail = new Email(header, header[0], emailMessageQuarantined, lines[0], lines[1]);
+
+                return "SUCCESS";
                 
             }
             else if (header.StartsWith("T"))
             {
                 string[] lines = Regex.Split(body, "\r\n");
+
+                string tweetMessage = lines[1];
+
+                int tweetCharacterCount = 0;
+
+                for (int i = 0; i < tweetMessage.Length; i++)
+                {
+                    tweetCharacterCount++;
+                }
+
+                if (tweetCharacterCount > 140)
+                {
+                    return "Message can only be 140 characters long";
+                }
 
                 Tweet newTweet = new Tweet(header, header[0], lines[1], lines[0]);
 

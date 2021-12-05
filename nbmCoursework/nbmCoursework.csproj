@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Checkers\HashtagAndMentionChecker.cs" />
+    <Compile Include="Checkers\QuarantineChecker.cs" />
+    <Compile Include="Text Abbreviations\TextAbbreviationChecker.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,7 +75,7 @@
   <ItemGroup>
     <Compile Include="Messages\Email.cs" />
     <Compile Include="Messages\Message.cs" />
-    <Compile Include="Messages\NBMManager.cs" />
+    <Compile Include="NBM Manager\NBMManager.cs" />
     <Compile Include="Messages\SMS.cs" />
     <Compile Include="Messages\Tweet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -98,12 +101,25 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Text Abbreviations\textwords.csv" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Sample Files For Testing\smsTestFile_One.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Lists\QuarantineList.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Lists\HashtagList.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Lists\TrendingList.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Lists\MentionsList.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

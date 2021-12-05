@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -24,18 +25,14 @@ namespace nbmCoursework
     public partial class MainWindow : Window
     {
         private NBMManager nbmManager;
+        private TextAbbreviationChecker checker;
         public MainWindow()
         {
             InitializeComponent();
 
             nbmManager = new NBMManager();
 
-        }
-
-        private void NewMessageButton_Click(object sender, RoutedEventArgs e)
-        {
-            MessageHeaderTextBox.Text = String.Empty;
-            MessageBodyTextBox.Text = String.Empty;
+            checker = new TextAbbreviationChecker();
         }
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)

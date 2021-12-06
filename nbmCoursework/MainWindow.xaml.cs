@@ -37,7 +37,7 @@ namespace nbmCoursework
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-
+            // boolean variable set to be used for error handling
             Boolean validated = true;
 
             // if statment used to check that the message header is not left blank before submitting
@@ -53,7 +53,7 @@ namespace nbmCoursework
                 validated = false;
             }
 
-            // initialising the id string to count how many characters have been inputted
+            // initialising the id string to count how many characters have been inputted in the header text box
             string header = MessageHeaderTextBox.Text;
 
             int count = 0;
@@ -71,19 +71,22 @@ namespace nbmCoursework
             }
 
 
-
+            // if the input is valid for both header and message body then the details will be submitted and added to a list for either sms, email or tweet
             if (validated)
             {
                 string processMessageResult = nbmManager.processMessage(MessageHeaderTextBox.Text, MessageBodyTextBox.Text);
 
                 if (processMessageResult != "SUCCESS")
                 {
+                    // process message method result is then displayed to the user for message validation e.g "can only be 140 characters long"
                     MessageBox.Show(processMessageResult);
                 }
                 else
                 {
+                    // both text boxes are then emptied for new details to be added
                     MessageHeaderTextBox.Text = String.Empty;
                     MessageBodyTextBox.Text = String.Empty;
+                    // message box will appear with "submitted"
                     MessageBox.Show("Submitted");
                 }
             }
@@ -96,7 +99,7 @@ namespace nbmCoursework
 
             foreach (string hashtag in nbmManager.getHashtagList())
             {
-                hashtagReportBox.AppendText(hashtag);
+                HashtagDisplayBox.AppendText(hashtag);
             }
             
         }

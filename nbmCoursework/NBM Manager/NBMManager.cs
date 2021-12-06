@@ -58,19 +58,21 @@ namespace nbmCoursework.Messages
             }
             else if (header.StartsWith("E"))
             {
-                // if the message header begins with the letter E then a new email object will be created
                 
+                // splitting the email body line by line
                 string[] lines = Regex.Split(body, "\r\n");
 
                 string emailMessage = lines[2];
 
                 string subject = lines[1];
 
+                // subject of the email is split into words to check the date is in the correct format for SIR's
                 string[] word = subject.Split(' ');
                 //DateTime dDate;
 
                 int emailCharacterCount = 0;
 
+                // count used for counting the characters in the email message
                 for (int i = 0; i < emailMessage.Length; i++)
                 {
                     emailCharacterCount++;
@@ -81,14 +83,17 @@ namespace nbmCoursework.Messages
                     return "Message can only be 1028 characters long";
                 }
 
+                // if the subject begins with SIR then a check will be done on the formatting of the date added
                 if (subject.StartsWith("SIR"))
                 {
                     if(word[1].StartsWith("0"))
                     {
+                        // processMessageResult value will be updated to the string below and the user will have to put in a valid date
                         return "You must enter the date in the formate dd/mm/yyyy";
                     }
                     else
                     {
+                        // if all info is correct then a new instance of the SIR class will be created and the sortcode and nature of incident will be added to the SIR list
                         SIR newSIR = new SIR(lines[2], lines[3], header, header[0], lines[4], lines[0], lines[1]);
 
                         return "SUCCESS";
@@ -98,7 +103,7 @@ namespace nbmCoursework.Messages
                 }
                 else {
                     string emailMessageQuarantined = quarantineChecker.checkForURLs(emailMessage);
-
+                    // if it is a standard email then a new instance of the Email class will be created
                     Email newEmail = new Email(header, header[0], emailMessageQuarantined, lines[0], lines[1]);
 
                     return "SUCCESS";
@@ -108,14 +113,17 @@ namespace nbmCoursework.Messages
 
                 
             }
+            // if header begins with with a capital T then the folowing code will be accessed
             else if (header.StartsWith("T"))
             {
+                // splitting the body of the message 
                 string[] lines = Regex.Split(body, "\r\n");
 
                 string tweetMessage = lines[1];
 
                 int tweetCharacterCount = 0;
 
+                // loop used to count the characters in the tweet text
                 for (int i = 0; i < tweetMessage.Length; i++)
                 {
                     tweetCharacterCount++;
@@ -123,9 +131,11 @@ namespace nbmCoursework.Messages
 
                 if (tweetCharacterCount > 140)
                 {
+                    // processMessageResult value will be updated to the string below and the user will be asked to enter a tweet that is equal to or less than 140 characters
                     return "Message can only be 140 characters long";
                 }
 
+                // Using the checkForAbbreviations method to check through the tweet and replace with new boody of text before adding the message to a list
                 string messageTextWithAbbreviations = textAbbreviationChecker.checkForAbbreviations(tweetMessage);
                 hashtagAndMentionChecker.checkForHashtags(tweetMessage);
 
@@ -133,9 +143,11 @@ namespace nbmCoursework.Messages
 
                 return "SUCCESS";
             }
+            // if the header does not begin with S, E or T then they will be asked to try again
             else return "Header must begin with S, E or T";
         }
 
+        // method used to display the hashtag list to the user on the main window
         public void displayHashTagList()
         {
             hashtagAndMentionChecker.displayHashTagList();

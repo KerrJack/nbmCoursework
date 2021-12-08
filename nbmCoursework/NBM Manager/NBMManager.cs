@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace nbmCoursework.Messages
 {
@@ -12,6 +14,9 @@ namespace nbmCoursework.Messages
         TextAbbreviationChecker textAbbreviationChecker;
         QuarantineChecker quarantineChecker;
         nbmCoursework.Checkers.HashtagAndMentionChecker hashtagAndMentionChecker;
+        private LinkedList<Message> messageList;
+        private LinkedList<string> sirList;
+
 
 
         public NBMManager()
@@ -20,6 +25,8 @@ namespace nbmCoursework.Messages
             textAbbreviationChecker = new TextAbbreviationChecker();
             hashtagAndMentionChecker = new Checkers.HashtagAndMentionChecker();
             textAbbreviationChecker.readFromFile();
+            messageList = new LinkedList<Message>();
+            sirList = new LinkedList<string>();
         }
 
         public string processMessage(string header, string body)
@@ -27,7 +34,7 @@ namespace nbmCoursework.Messages
       
             if (header.StartsWith("S"))
             {
-                Console.WriteLine("blah");
+                
                 // string array set up to be used for count
                 string[] lines = Regex.Split(body, "\r\n");
 
@@ -54,6 +61,8 @@ namespace nbmCoursework.Messages
 
                 SMS newSMS = new SMS(header, header[0], messageTextWithAbbreviations, telephoneNumber);
 
+                messageList.AddLast(newSMS);
+
                 return "SUCCESS";
             }
             else if (header.StartsWith("E"))
@@ -68,7 +77,7 @@ namespace nbmCoursework.Messages
 
                 // subject of the email is split into words to check the date is in the correct format for SIR's
                 string[] word = subject.Split(' ');
-                //DateTime dDate;
+                DateTime dDate;
 
                 int emailCharacterCount = 0;
 
@@ -86,17 +95,22 @@ namespace nbmCoursework.Messages
                 // if the subject begins with SIR then a check will be done on the formatting of the date added
                 if (subject.StartsWith("SIR"))
                 {
-                    if(word[1].StartsWith("0"))
+                    if (DateTime.TryParse(word[1], out dDate))
                     {
                         // processMessageResult value will be updated to the string below and the user will have to put in a valid date
-                        return "You must enter the date in the formate dd/mm/yyyy";
+                        String.Format("{0:d/mm/yyyy}", dDate);
+                        SIR newSIR = new SIR(lines[2], lines[3], header, header[0], lines[4], lines[0], lines[1]);
+
+                        messageList.AddLast(newSIR);
+                        sirList.AddLast(newSIR.sortCode + " " + newSIR.natureOfIncident);
+                        return "SUCCESS";
                     }
                     else
                     {
                         // if all info is correct then a new instance of the SIR class will be created and the sortcode and nature of incident will be added to the SIR list
-                        SIR newSIR = new SIR(lines[2], lines[3], header, header[0], lines[4], lines[0], lines[1]);
+                        //SIR newSIR = new SIR(lines[2], lines[3], header, header[0], lines[4], lines[0], lines[1]);
 
-                        return "SUCCESS";
+                        return "You must enter the date in the formate dd/mm/yyyy";
 
                     }
                     
@@ -105,6 +119,8 @@ namespace nbmCoursework.Messages
                     string emailMessageQuarantined = quarantineChecker.checkForURLs(emailMessage);
                     // if it is a standard email then a new instance of the Email class will be created
                     Email newEmail = new Email(header, header[0], emailMessageQuarantined, lines[0], lines[1]);
+
+                    messageList.AddLast(newEmail);
 
                     return "SUCCESS";
                 }
@@ -141,6 +157,8 @@ namespace nbmCoursework.Messages
 
                 Tweet newTweet = new Tweet(header, header[0], messageTextWithAbbreviations, lines[0]);
 
+                messageList.AddLast(newTweet);
+
                 return "SUCCESS";
             }
             // if the header does not begin with S, E or T then they will be asked to try again
@@ -148,14 +166,38 @@ namespace nbmCoursework.Messages
         }
 
         // method used to display the hashtag list to the user on the main window
-        public void displayHashTagList()
+        public void displayMentionList()
         {
-            hashtagAndMentionChecker.displayHashTagList();
+            hashtagAndMentionChecker.displayMentionList();
         }
 
-        public LinkedList<string> getHashtagList()
+        public LinkedList<string> getMentionList()
         {
-            return hashtagAndMentionChecker.getHashtagList();
+            return hashtagAndMentionChecker.getMentionList();
         }
+
+        public Dictionary<string,int> getTrendingList()
+        {
+            return hashtagAndMentionChecker.getSortedTrendingList();
+        }
+
+        public LinkedList<string> getQuarantineList()
+        {
+            return quarantineChecker.getQuarantineList();
+        }
+
+        public LinkedList<string> getSIRList()
+        {
+            return sirList;
+        }
+
+        public void saveMessagesToFile()
+        {
+            string json = JsonConvert.SerializeObject(messageList.ToArray());
+
+            //write string to file
+            File.WriteAllText(@"H:\nbmCoursework\nbmCoursework\json_output\TextFile1.txt", json);
+        }
+
     }
 }

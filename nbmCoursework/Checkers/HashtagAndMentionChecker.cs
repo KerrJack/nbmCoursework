@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,31 @@ namespace nbmCoursework.Checkers
     {
         private LinkedList<string> hashtagList;
         private LinkedList<string> mentionList;
+        private Dictionary<string,int> trendingList;
  
         public HashtagAndMentionChecker()
         {
             hashtagList = new LinkedList<string>();
             mentionList = new LinkedList<string>();
+            trendingList = new Dictionary<string, int>();
+        }
+
+        public Dictionary<string,int> getSortedTrendingList()
+        {
+            trendingList.Clear();
+
+            foreach (String hashtag in hashtagList)
+            {
+                if (trendingList.ContainsKey(hashtag))
+                {
+                    trendingList[hashtag]++;
+                } else
+                {
+                    trendingList.Add(hashtag, 1);
+                }
+            }
+
+            return trendingList.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
         }
 
         public string checkForHashtags(string sentence)
@@ -28,7 +49,7 @@ namespace nbmCoursework.Checkers
             {
                 if (word.StartsWith("#"))
                 {
-                    hashtagList.AddLast(word);
+                    hashtagList.AddLast(word+"\n");
                 }
                 else if (word.StartsWith("@"))
                 {
@@ -43,18 +64,26 @@ namespace nbmCoursework.Checkers
             return newSentence;
         }
 
-        public void displayHashTagList()
+        public void displayMentionList()
         {
-            foreach (string hashtag in hashtagList)
+            foreach (string mention in mentionList)
             {
-                Console.WriteLine(hashtag);
+                Console.WriteLine(mention);
             }
+        }
+
+        public LinkedList<string> getMentionList()
+        {
+            return mentionList;
         }
 
         public LinkedList<string> getHashtagList()
         {
             return hashtagList;
         }
+
+
+        
 
     }
 

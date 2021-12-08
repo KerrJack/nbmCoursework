@@ -11,7 +11,7 @@ namespace nbmCoursework
 {
     class TextAbbreviationChecker
     {
-        Hashtable abbreviations;
+        private Hashtable abbreviations;
 
         public TextAbbreviationChecker()
         {

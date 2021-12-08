@@ -88,20 +88,54 @@ namespace nbmCoursework
                     MessageBodyTextBox.Text = String.Empty;
                     // message box will appear with "submitted"
                     MessageBox.Show("Submitted");
+                    nbmManager.saveMessagesToFile();
                 }
             }
             
         }
 
-        private void hashtagListButton_Click(object sender, RoutedEventArgs e)
+        private void MentionListButton_Click(object sender, RoutedEventArgs e)
         {
-            nbmManager.displayHashTagList();
+            nbmManager.displayMentionList();
 
-            foreach (string hashtag in nbmManager.getHashtagList())
+            MentionDisplayBox.Clear();
+            foreach (string mention in nbmManager.getMentionList())
             {
-                HashtagDisplayBox.AppendText(hashtag);
+                MentionDisplayBox.AppendText(mention + "\n");
             }
-            
+
+        }
+
+        private void trendingListButton_Click(object sender, RoutedEventArgs e)
+        {
+            trendingDisplayBox.Clear();
+            foreach(KeyValuePair<string,int> trendingEntry in nbmManager.getTrendingList())
+            {
+                trendingDisplayBox.AppendText(trendingEntry.Key + " has " + trendingEntry.Value + " counts\n");
+            }
+        }
+
+        private void QuarantineListButton_Click(object sender, RoutedEventArgs e)
+        {
+            DisplayQuarantineList.Clear();
+            foreach (string url in nbmManager.getQuarantineList())
+            {
+                DisplayQuarantineList.AppendText(url + "\n");
+            }
+
+        }
+
+        private void sirListButton_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (string sir in nbmManager.getSIRList())
+            {
+                SIRDisplayBox.AppendText(sir + "\n");
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            nbmManager.saveMessagesToFile();
         }
     }
 }

@@ -37,5 +37,10 @@ namespace nbmCoursework
 
             return newSentence;
         }
+
+        public LinkedList<string> getQuarantineList()
+        {
+            return quarantineList;
+        }
     }
 }

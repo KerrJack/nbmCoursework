@@ -127,7 +127,10 @@
     <Resource Include="Lists\MentionsList.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="json_output\TextFile1.txt" />
+    <None Include="json_output\json_output_messages" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Message Testing Samples\MessageTestSamples.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

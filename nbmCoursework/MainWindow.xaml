@@ -6,22 +6,21 @@
         xmlns:local="clr-namespace:nbmCoursework"
         mc:Ignorable="d"
         Title="Napier Banking Message Filtering Service" Height="450" Width="1186">
-    <Grid RenderTransformOrigin="0.439,0.716" Margin="0,0,2,0">
-        <TextBox x:Name="MessageHeaderTextBox" HorizontalAlignment="Left" Height="23" Margin="194,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
-        <Label x:Name="MessageHeaderLabel" Content="Message Header" HorizontalAlignment="Left" Margin="74,49,0,0" VerticalAlignment="Top" Height="42"/>
-        <TextBox x:Name="MessageBodyTextBox" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Height="122" Margin="194,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226"/>
-        <Label x:Name="MessageBodyLabel" Content="Message Body" HorizontalAlignment="Left" Margin="74,121,0,0" VerticalAlignment="Top" Height="42"/>
-        <Button x:Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Margin="274,265,0,0" VerticalAlignment="Top" Width="75" Click="SubmitButton_Click"/>
-        <Button x:Name="NewMessageButton" Content="New" HorizontalAlignment="Left" Margin="194,265,0,0" VerticalAlignment="Top" Width="75" Click="SubmitButton_Click"/>
-        <TextBox x:Name="trendingDisplayBox" HorizontalAlignment="Left" Height="276" Margin="497,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115"/>
-        <Button x:Name="MentionListButton" Content="Mentions List" HorizontalAlignment="Left" Margin="670,49,0,0" VerticalAlignment="Top" Width="84" Click="MentionListButton_Click"/>
-        <TextBox x:Name="MentionDisplayBox" HorizontalAlignment="Left" Height="276" Margin="670,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="109"/>
-        <Button x:Name="sirListButton" Content="SIR List" HorizontalAlignment="Left" Margin="827,49,0,0" VerticalAlignment="Top" Width="75" Click="sirListButton_Click"/>
-        <TextBox x:Name="SIRDisplayBox" HorizontalAlignment="Left" Height="276" Margin="827,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="trendingListButton" Content="trendingList" HorizontalAlignment="Left" Margin="534,49,0,0" VerticalAlignment="Top" Width="75" Click="trendingListButton_Click"/>
-        <Button x:Name="QuarantineListButton" Content="Quarantine List" HorizontalAlignment="Left" Margin="1005,49,0,0" VerticalAlignment="Top" Width="75" Click="QuarantineListButton_Click"/>
-        <TextBox x:Name="DisplayQuarantineList" HorizontalAlignment="Left" Height="276" Margin="980,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="saveMessagesToFile" Content="Save Messages To File" HorizontalAlignment="Left" Margin="209,317,0,0" VerticalAlignment="Top" Width="162" Click="Button_Click"/>
+    <Grid RenderTransformOrigin="0.439,0.716" Margin="0,0,2,0" Background="#FFF3CDCD">
+        <TextBox x:Name="MessageHeaderTextBox" HorizontalAlignment="Left" Height="23" Margin="162,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
+        <Label x:Name="MessageHeaderLabel" Content="Message Header" HorizontalAlignment="Left" Margin="36,49,0,0" VerticalAlignment="Top" Height="42"/>
+        <TextBox x:Name="MessageBodyTextBox" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Height="122" Margin="162,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226"/>
+        <Label x:Name="MessageBodyLabel" Content="Message Body" HorizontalAlignment="Left" Margin="36,121,0,0" VerticalAlignment="Top" Height="42"/>
+        <Button x:Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Margin="162,267,0,0" VerticalAlignment="Top" Width="75" Click="SubmitButton_Click"/>
+        <TextBox x:Name="trendingDisplayBox" HorizontalAlignment="Left" Height="276" Margin="462,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+        <Button x:Name="MentionListButton" Content="Mentions List" HorizontalAlignment="Left" Margin="642,49,0,0" VerticalAlignment="Top" Width="150" Click="MentionListButton_Click"/>
+        <TextBox x:Name="MentionDisplayBox" HorizontalAlignment="Left" Height="276" Margin="642,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+        <Button x:Name="sirListButton" Content="SIR List" HorizontalAlignment="Left" Margin="827,49,0,0" VerticalAlignment="Top" Width="150" Click="sirListButton_Click"/>
+        <TextBox x:Name="SIRDisplayBox" HorizontalAlignment="Left" Height="276" Margin="827,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+        <Button x:Name="trendingListButton" Content="Trending List" HorizontalAlignment="Left" Margin="462,49,0,0" VerticalAlignment="Top" Width="150" Click="trendingListButton_Click"/>
+        <Button x:Name="QuarantineListButton" Content="Quarantine List" HorizontalAlignment="Left" Margin="1005,49,0,0" VerticalAlignment="Top" Width="150" Click="QuarantineListButton_Click"/>
+        <TextBox x:Name="DisplayQuarantineList" HorizontalAlignment="Left" Height="276" Margin="1005,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+        <Button x:Name="saveMessagesToFile" Content="Save Messages To File" HorizontalAlignment="Left" Margin="253,267,0,0" VerticalAlignment="Top" Width="135" Click="Button_Click"/>
 
     </Grid>
 </Window>

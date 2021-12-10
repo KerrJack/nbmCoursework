@@ -12,6 +12,7 @@ namespace nbmCoursework.Messages
     class NBMManager
     {
         TextAbbreviationChecker textAbbreviationChecker;
+
         QuarantineChecker quarantineChecker;
         nbmCoursework.Checkers.HashtagAndMentionChecker hashtagAndMentionChecker;
         private LinkedList<Message> messageList;
@@ -99,6 +100,7 @@ namespace nbmCoursework.Messages
                     {
                         // processMessageResult value will be updated to the string below and the user will have to put in a valid date
                         String.Format("{0:d/mm/yyyy}", dDate);
+                        string emailMessageQuarantined = quarantineChecker.checkForURLs(emailMessage);
                         SIR newSIR = new SIR(lines[2], lines[3], header, header[0], lines[4], lines[0], lines[1]);
 
                         messageList.AddLast(newSIR);
@@ -196,7 +198,7 @@ namespace nbmCoursework.Messages
             string json = JsonConvert.SerializeObject(messageList.ToArray());
 
             //write string to file
-            File.WriteAllText(@"H:\nbmCoursework\nbmCoursework\json_output\TextFile1.txt", json);
+            File.WriteAllText(@"H:\nbmCoursework\nbmCoursework\json_output\json_output_messages", json);
         }
 
     }

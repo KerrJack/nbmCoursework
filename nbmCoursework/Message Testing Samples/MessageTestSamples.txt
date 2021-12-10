@@ -1,0 +1,324 @@
+﻿*****Example Message for Testing*****
+
+*************************************
+Message Header Testing
+*************************************
+Message Header must be exactly 10 characters long
+*************************************
+Normal & Extreme:
+
+S123456789
+
+07123456789
+Hello Napier Bank can you help me?
+
+Exceptional:
+
+S1234567891
+
+07123456789
+Hello Napier Bank can you help me?
+
+*************************************
+Message Header must begin with S, E or T
+*************************************
+Normal & Extreme:
+
+S123456789
+
+07123456789
+Hello Napier Bank can you help me?
+
+Exceptional:
+
+f1234567891
+
+07123456789
+Hello Napier Bank can you help me?
+*************************************
+SMS Message Testing
+*************************************
+SMS Message text must be no longer than 140 characters long
+*************************************
+Normal: 
+
+S123456789
+
+07123456789
+Hello Napier Bank can you help me?
+
+Extreme:
+
+S123456789
+
+07123456789
+Hello napier bank can you help me? I am having a lot of issues with my online banking. Can I book an appointment at your nearest branch HELP
+
+Exceptional:
+
+S123456789
+
+07123456789
+Hello napier bank can you help me? I am having a lot of issues with my online banking. Can I book an appointment at your nearest branch to speak to someone?
+
+*************************************
+Test for “textspeak abbreviations” by adding one of the abbreviations to the message text
+*************************************
+Normal and Extreme: 
+
+S123456789
+
+07123456789
+Hello Napier Bank can you help me? CYA
+
+Exceptional:
+
+S123456789
+
+07123456789
+Hello Napier Bank can you help me? CYa
+
+*************************************
+Email Message Testing
+*************************************
+Email Message subject must be no more than 20 characters long
+*************************************
+Normal: 
+
+E123456789
+
+john.smith@example.org
+Help
+Im having problems with accessing your ATM
+
+Extreme:
+
+E123456789
+
+john.smith@example.org
+Help me very urgent!
+Im having problems with accessing your ATM
+
+Exceptional:
+
+E123456789
+
+john.smith@example.org
+Help me this is very urgent!
+Im having problems with accessing your ATM
+
+*************************************
+Email Message text must be no longer than 1028 characters
+*************************************
+Normal:
+
+E123456789
+
+john.smith@example.org
+Help
+Im having problems with accessing your ATM.
+
+Extreme:
+
+E123456789
+
+john.smith@example.org
+Help
+U4qo0aufoHF3KFaKpUWmpilID5tHoqGmvpze9PuGmYZ0ppuSjP5Pkx8DN17cNaOpmNdMyW3rtxi4lA1jgefkppHJxRW0wiQDaswqkWykgOc0ZTFQmHvRR6vvF1f8oMi66MmeYBsuJglFDebsvh5T18kXzKSmXkz5BwIb6UHy8zwWhVH2ZmZ2GYnfKkDPDfBqpgRdJZoAj61RH0YHHsGZML8IM0zEA8uuHfxEE6BwvCSk53Nk35BFNPybIHjlr2FioNC1fhXot5k1sG4HQCzh9T3MyyIiq87fb8pOsXQol4YNiNtXtCgKWLsqnot2wwYG2eGIZx9mhEmYvmd5szxrz4cG2L4D6HvQLge1VujOhKcMIh3JK2bMvj7jKbtg16JvQ5vNn2SpwsuxglHlndkrfCGKZ48JP96MGRZWNJ1kK9GWq0bYRnfJJd6MwtfWnHNh1xPWdZKxgtbVdeLS0nxqxo7n5hi69L0fguIvYTOonHb68oTzaoTCBlBRGWyXikVol4diL74Qyb2LWTNC9Tkly8QJAQ7dbtEWBVqygYrxtZYqXzDDn1DLGZlJRnKJ6AvxmNII4lSwtbiwUJ5w8JB3SneiYrmaSwHWLjp7gUVIODiKr2WeIRU7OPYgAbEJuZKrjd6UpIocxeQah05scGMXT987r5j2wjCEQXu5xyuCvzZS6roDBCzxTZuV7q8HR0mYBrs7SxgMcnqyYiONymekAMW8LR6QDtQOA12lRjhoc2Yuh1x1GnbK8BYKKbMPmbYJvLoqBfyZLwh80cm1hs8slWSJ0PkagmyfKaVHAVMFiqQZrqnNExCJsp9psg4pTQFCpBM8xkJrM14VYeor51ebHnEDQ6tiar4iPTFbu7aJz0240aevhkez9QiGBaAMQLAMUWh5UYjcjCbHW8eWfwVER8uyjy81wCNTEk5HIfb4lEhpYPovuOFobdCB0iSh8NqlyC1oibeKhJtK3YCqZYDR8owXUEJx2tWafsN0PS006XptuiAxHnHp5NSclUehYxVE6Ytl
+
+Exceptional:
+
+john.smith@example.org
+Help
+U4qo0aufoHF3KFaKpUWmpilID5tHoqGmvpze9PuGmYZ0ppuSjP5Pkx8DN17cNaOpmNdMyW3rtxi4lA1jgefkppHJxRW0wiQDaswqkWykgOc0ZTFQmHvRR6vvF1f8oMi66MmeYBsuJglFDebsvh5T18kXzKSmXkz5BwIb6UHy8zwWhVH2ZmZ2GYnfKkDPDfBqpgRdJZoAj61RH0YHHsGZML8IM0zEA8uuHfxEE6BwvCSk53Nk35BFNPybIHjlr2FioNC1fhXot5k1sG4HQCzh9T3MyyIiq87fb8pOsXQol4YNiNtXtCgKWLsqnot2wwYG2eGIZx9mhEmYvmd5szxrz4cG2L4D6HvQLge1VujOhKcMIh3JK2bMvj7jKbtg16JvQ5vNn2SpwsuxglHlndkrfCGKZ48JP96MGRZWNJ1kK9GWq0bYRnfJJd6MwtfWnHNh1xPWdZKxgtbVdeLS0nxqxo7n5hi69L0fguIvYTOonHb68oTzaoTCBlBRGWyXikVol4diL74Qyb2LWTNC9Tkly8QJAQ7dbtEWBVqygYrxtZYqXzDDn1DLGZlJRnKJ6AvxmNII4lSwtbiwUJ5w8JB3SneiYrmaSwHWLjp7gUVIODiKr2WeIRU7OPYgAbEJuZKrjd6UpIocxeQah05scGMXT987r5j2wjCEQXu5xyuCvzZS6roDBCzxTZuV7q8HR0mYBrs7SxgMcnqyYiONymekAMW8LR6QDtQOA12lRjhoc2Yuh1x1GnbK8BYKKbMPmbYJvLoqBfyZLwh80cm1hs8slWSJ0PkagmyfKaVHAVMFiqQZrqnNExCJsp9psg4pTQFCpBM8xkJrM14VYeor51ebHnEDQ6tiar4iPTFbu7aJz0240aevhkez9QiGBaAMQLAMUWh5UYjcjCbHW8eWfwVER8uyjy81wCNTEk5HIfb4lEhpYPovuOFobdCB0iSh8NqlyC1oibeKhJtK3YCqZYDR8owXUEJx2tWafsN0PS006XptuiAxHnHp5NSclUehYxVE6Ytlhfjhjfghfkogf
+
+*************************************
+Test for embedded hyperlinks by adding in a hyperlink to the message text
+*************************************
+
+Normal and Extreme:
+
+E123456789
+
+john.smith@example.org
+Help
+Im having problems with accessing your ATM can I contact you at http:\\NapierBank.com to book in a meeting at your branch?
+
+Exceptional:
+
+john.smith@example.org
+Help
+Im having problems with accessing your ATM can I contact you at httpss:\\NapierBank.com to book in a meeting at your branch?
+
+*************************************
+Tweet Message Testing
+*************************************
+*************************************
+Tweet Message text must be no longer than 140 characters long
+*************************************
+Normal: 
+
+T123456789
+
+@johnsmith
+Hello Napier Bank can you help me?
+
+Extreme:
+
+T123456789
+
+@johnsmith
+Hello napier bank can you help me? I am having a lot of issues with my online banking. Can I book an appointment at your nearest branch HELP
+
+Exceptional:
+
+T123456789
+
+@johnsmith
+Hello napier bank can you help me? I am having a lot of issues with my online banking. Can I book an appointment at your nearest branch to speak to someone?
+
+*************************************
+Test for “textspeak abbreviations” by adding one of the abbreviations to the message text for Tweet Message
+*************************************
+Normal and Extreme:
+
+T123456789
+
+@johnsmith
+Hello napier bank can you help me? I am having a lot of issues with my online banking. BRB
+
+Exceptional:
+
+T123456789
+
+@johnsmith
+Hello napier bank can you help me? I am having a lot of issues with my online banking brb
+
+*************************************
+Test for hashtags by adding hashtagged strings to the message text
+*************************************
+Normal and Extreme:
+
+T123456789
+
+@johnsmith
+Hello napier bank can you help me? I am having a lot of issues with my online banking #NapierBank
+
+Exceptional:
+
+T123456789
+
+@johnsmith
+Hello napier bank can you help me? I am having a lot of issues with my online banking.
+
+*************************************
+Test for mentions in the message text by adding mention strings to the text
+*************************************
+Normal and Extreme:
+
+T123456789
+
+@johnsmith
+Hello napier bank can you help me? I am having a lot of issues with my online banking @NapierBank
+
+Exceptional:
+
+T123456789
+
+@johnsmith
+Hello napier bank can you help me? I am having a lot of issues with my online banking.
+
+*************************************
+SIR Message Testing
+*************************************
+*************************************
+SIR Message subject test to check if the subject begins with “SIR” it will create a new SIR message and go through relevant processing
+*************************************
+Normal and Extreme:
+
+E123456789
+
+john.smith@example.org
+SIR 01/12/2021
+000111
+Theft
+Hello I am writing this SIR for theft
+
+Exceptional:
+
+E123456789
+
+john.smith@example.org
+help with SIR 01/12/2021
+000111
+Terrorism
+Hello I am writing this SIR for terrorism
+
+*************************************
+Sort code and nature of incident added to message body to check that the sort code and nature of incident will be added to the SIR list.
+*************************************
+Normal:
+
+E123456789
+
+john.smith@example.org
+SIR 01/12/2021
+000111
+Theft
+Hello I am writing this SIR for theft
+
+*************************************
+Check date in subject is in correct format
+*************************************
+Normal and Extreme:
+
+E123456789
+
+john.smith@example.org
+SIR 01/12/2021
+000111
+Theft
+Hello I am writing this SIR for theft
+
+Exceptional:
+
+john.smith@example.org
+SIR 01/12/21
+000111
+Theft
+Hello I am writing this SIR for theft
+
+*************************************
+Test for embedded hyperlinks by adding in a hyperlink to the message text
+*************************************
+
+Normal and Extreme:
+
+E123456789
+
+john.smith@example.org
+SIR 01/12/2021
+000111
+Theft
+Hello I am writing this SIR for theft http:\\www.anywhere.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

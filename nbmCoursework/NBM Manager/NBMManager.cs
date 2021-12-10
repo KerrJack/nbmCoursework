@@ -198,7 +198,7 @@ namespace nbmCoursework.Messages
             string json = JsonConvert.SerializeObject(messageList.ToArray());
 
             //write string to file
-            File.WriteAllText(@"H:\nbmCoursework\nbmCoursework\json_output\json_output_messages", json);
+            File.WriteAllText(@"H:\nbmCoursework\nbmCoursework\json_output\json_output_messages.txt", json);
         }
 
     }

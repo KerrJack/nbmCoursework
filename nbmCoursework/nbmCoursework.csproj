@@ -127,7 +127,7 @@
     <Resource Include="Lists\MentionsList.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="json_output\json_output_messages" />
+    <Content Include="json_output\json_output_messages.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Message Testing Samples\MessageTestSamples.txt" />
